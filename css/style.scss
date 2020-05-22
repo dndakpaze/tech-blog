@@ -13,4 +13,21 @@
     padding-left: .5em;
     padding-right: .5em;
 }
+
+@font-face {
+    font-family: "DM-Mono";
+    src: url("fonts/DMMono-Regular.woff") format('woff');
+}
+
+@font-face {
+    font-family: "DM-Mono";
+    src: url("fonts/DMMono-Medium.woff") format('woff');
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: "DM-Mono";
+    src: url("fonts/DMMono-italic.woff") format('woff');
+    font-style: italic;
+}
 /* add additional CSS rules below */
