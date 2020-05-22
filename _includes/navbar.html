@@ -1,21 +1,33 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container">
-      <a class="navbar-brand" href="#">{{ site.title }}</a>
+    <div class="container" >
+      <a class="navbar-brand" href="/">{{ site.title }}</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
+          {%- if page.title == "About" -%}
           <li class="nav-item active">
-            <a class="nav-link" href="#">Home
+            {% else %}
+            <li class="nav-item ">
+          {%- endif -%}
+            <a class="nav-link" href="/about.html">About
               <span class="sr-only">(current)</span>
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">About</a>
+          {%- if page.title == "Blog" -%}
+          <li class="nav-item active">
+            {% else %}
+            <li class="nav-item ">
+          {%- endif -%}
+            <a class="nav-link" href="/blog.html">Blog</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Contact</a>
+          {%- if page.title == "Contact" -%}
+          <li class="nav-item active">
+            {% else %}
+            <li class="nav-item ">
+          {%- endif -%}
+            <a class="nav-link" href="/contact.html">Contact</a>
           </li>
         </ul>
       </div>

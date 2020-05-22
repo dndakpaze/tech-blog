@@ -4,4 +4,13 @@
 
 @import 'bootstrap/bootstrap';
 
+.active {
+    background-color: grey;
+}
+.navbar-brand {
+    background-color: grey;
+    margin-right: 2em;
+    padding-left: .5em;
+    padding-right: .5em;
+}
 /* add additional CSS rules below */
