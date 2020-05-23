@@ -9,23 +9,45 @@ layout: default
   {{ content }}
 
   {%- if site.posts.size > 0 -%}
-    <h2 class="post-list-heading">{{ page.list_title | default: "Posts" }}</h2>
-    <ul class="post-list">
-      {%- for post in site.posts -%}
-      <li>
-        {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
-        <span class="post-meta">{{ post.date | date: date_format }}</span>
-        <h3>
-          <a class="post-link" href="{{ post.url | relative_url }}">
-            {{ post.title | escape }}
-          </a>
-        </h3>
-        {%- if site.show_excerpts -%}
-          {{ post.excerpt }}
-        {%- endif -%}
-      </li>
-      {%- endfor -%}
-    </ul>
+    <h2 class="post-list-heading style my-4">{{ page.list_title | default: "Derniers Posts" }}</h2>
+    <div class="post-list">
+        {%- for post in site.posts -%}
+        <div class="card border-light mb-3 w-100" ;">
+            <div class="card-header">
+                <h5>
+                    <a class="post-link card-text" style="color: rgb(189, 102, 22);" href="{{ post.url | relative_url }}">
+                        {{ post.title | escape }}
+                    </a>
+                </h5>
+            </div>
+                <div class="card-body text-success">
+                    <h5 class="card-title " style="color: gray;">
+                        {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
+                        <span class="post-meta"><h6>{{ post.date | date: date_format }}</h6></span>
+                    </h5>
+                    <p class="card-text text-dark" style=>Some quick example text to build on the card title and make up the bulk of the card's content.   
+                    </p>
+                    <div class="plus">
+                        <a style="color: rgb(189, 102, 22);" href="{{ post.url | relative_url }}">
+                          <i class="fas fa-arrow-right">
+
+                            
+                          </i>
+
+
+                            En savoir plus 
+                        </a>
+                    </div>
+                </div>
+        </div>
+        <hr>
+        <div>
+            {%- if site.show_excerpts -%}
+            {{ post.excerpt }}
+            {%- endif -%}
+        </div>
+        {%- endfor -%}
+</div>
 
     <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | relative_url }}">via RSS</a></p>
   {%- endif -%}
