@@ -4,4 +4,39 @@
 
 @import 'bootstrap/bootstrap';
 
+.active {
+    background-color: #bd6616;;
+}
+.navbar-brand {
+    background-color: #bd6616;
+    margin-right: 2em;
+    padding-left: .5em;
+    padding-right: .5em;
+}
+.fill { 
+    min-height: 85%;
+    margin-bottom: 3em;
+}
+html,body {
+    font-family: Chivo;
+    min-height: 100%;
+    height: 100%;
+}
+
+@font-face {
+    font-family: "Chivo";
+    src: url("/fonts/Chivo-Regular.woff") format('woff');
+}
+
+@font-face {
+    font-family: "Chivo";
+    src: url("/fonts/Chivo-Bold.woff") format('woff');
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: "Chivo";
+    src: url("/fonts/Chivo-italic.woff") format('woff');
+    font-style: italic;
+}
 /* add additional CSS rules below */
