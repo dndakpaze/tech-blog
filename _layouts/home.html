@@ -1,55 +1,104 @@
 ---
 layout: default
 ---
-<div class="my-4" ></div>
+<div class="my-4"></div>
 {%- if page.title -%}
 <h1 class="page-heading">{{ page.title }}</h1>
 {%- endif -%}
 
-  {{ content }}
+{{ content }}
 
-  {%- if site.posts.size > 0 -%}
-    <h2 class="post-list-heading style my-4">{{ page.list_title | default: "Derniers Posts" }}</h2>
-    <div class="post-list">
-        {%- for post in site.posts -%}
-        <div class="card border-light mb-3 w-100" ;">
-            <div class="card-header">
-                <h5>
-                    <a class="post-link card-text" style="color: rgb(189, 102, 22);" href="{{ post.url | relative_url }}">
-                        {{ post.title | escape }}
-                    </a>
-                </h5>
+
+{% if site.paginate %}
+{% assign posts = paginator.posts %}
+{% else %}
+{% assign posts = site.posts %}
+{% endif %}
+
+
+{%- if posts.size > 0 -%}
+<h2 class="post-list-heading style my-4">{{ page.list_title | default: "Derniers Posts" }}</h2>
+<div class="post-list">
+    {%- for post in posts -%}
+    <div class="card border-light mb-3 w-100" ;">
+        <div class="card-header">
+            <h5>
+                <a class="post-link card-text" style="color: rgb(189, 102, 22);" href="{{ post.url | relative_url }}">
+                    {{ post.title | escape }}
+                </a>
+            </h5>
+        </div>
+        <div class="card-body text-success">
+            <h5 class="card-title " style="color: gray;">
+                {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
+                <span class="post-meta">
+                    <h6>{{ post.date | date: date_format }}</h6>
+                </span>
+            </h5>
+            <p class="card-text text-dark" style=>Some quick example text to build on the card title and make up the
+                bulk of the card's content.
+            </p>
+            <div class="plus">
+                <a style="color: rgb(189, 102, 22);" href="{{ post.url | relative_url }}">
+                    <i class="fas fa-arrow-right">
+
+
+                    </i>
+
+
+                    En savoir plus
+                </a>
             </div>
-                <div class="card-body text-success">
-                    <h5 class="card-title " style="color: gray;">
-                        {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
-                        <span class="post-meta"><h6>{{ post.date | date: date_format }}</h6></span>
-                    </h5>
-                    <p class="card-text text-dark" style=>Some quick example text to build on the card title and make up the bulk of the card's content.   
-                    </p>
-                    <div class="plus">
-                        <a style="color: rgb(189, 102, 22);" href="{{ post.url | relative_url }}">
-                          <i class="fas fa-arrow-right">
-
-                            
-                          </i>
-
-
-                            En savoir plus 
-                        </a>
-                    </div>
-                </div>
         </div>
-        <hr>
-        <div>
-            {%- if site.show_excerpts -%}
-            {{ post.excerpt }}
-            {%- endif -%}
-        </div>
-        {%- endfor -%}
+    </div>
+    <hr>
+    <div>
+        {%- if site.show_excerpts -%}
+        {{ post.excerpt }}
+        {%- endif -%}
+    </div>
+    {%- endfor -%}
 </div>
+{% if site.paginate %}
+<div class="pager d-flex justify-content-center">
+    <ul class="pagination">
+        {%- if paginator.previous_page %}
+        <li><a href="{{ paginator.previous_page_path | relative_url }}"
+                class="previous-page">&laquo; Précédent</a></li>
+        {%- else %}
+        <li>
+                <span>&laquo; Précédent</span>
 
-    <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | relative_url }}">via RSS</a></p>
-  {%- endif -%}
+        </li>
+        {%- endif %}
+        
+        {% for page in (1..paginator.total_pages) %}
+        {% if page == paginator.page %}
+        <span >
+            <div class="actualPage">
+                    {{ page }}
+
+            </div>
+        </span>
+        {% elsif page == 1 %}
+        <a href="/blog/">{{ page }}</a>
+        {% else %}
+        <a href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">{{ page }}</a>
+        {% endif %}
+        {% endfor %}
+
+        {%- if paginator.next_page %}
+        <li><a href="{{ paginator.next_page_path | relative_url }}" class="next-page">Suivant &raquo; </a></li>
+        {%- else %}
+        <li>
+                <span>Suivant &raquo; </span>
+        </li>
+        {%- endif %}
+    </ul>
+</div>
+{%- endif %}
+
+<p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | relative_url }}">via RSS</a></p>
+{%- endif -a%}
 
 </div>
