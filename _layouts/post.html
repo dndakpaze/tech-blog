@@ -14,7 +14,11 @@ layout: default
         • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">{{ page.author }}</span></span>
       {%- endif -%}</p>
   </header>
-
+  <ul>
+    {% for tag in page.tags %}
+        <a href="/{{ site.tag_page_dir }}/{{ tag | slugify: 'pretty' }}/"><i class="fas fa-tag"> {{ tag }}  &nbsp;&nbsp;</i></a>
+    {% endfor %}
+  </ul>
   <div class="post-content e-content" itemprop="articleBody">
     {{ content }}
   </div>

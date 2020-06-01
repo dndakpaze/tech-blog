@@ -36,6 +36,13 @@ plugins:
   - jekyll-feed
 #  - jekyll-redirect-from
 
+# Tags
+gems:
+- jekyll/tagging
+
+tag_page_layout: tag_page
+tag_page_dir: tag
+
 sass:
   sass_dir: css
   style:    compressed
